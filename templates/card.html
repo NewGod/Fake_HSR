@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fake_HSR</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<style>
+.infobox {
+	background-color: #1d3657;
+	border-top: 1px solid #0c223e;
+	color: #fff;
+	max-width: 300px;
+	padding-bottom: 50px;
+	display: inline-block;
+	flex-grow: 1;
+	float:left;
+}
+.cards {
+    min-height: 100vh;
+    padding: 10px;
+    width: calc(100% - 350px);
+	float:right;
+}
+		</style>
+	</head>
+	<body>
+		<main class = "main">
+		<div class="infobox">
+			<h1>Cards</h1>
+				<form role="form" method='POST' action='/cards'>
+					<div class="form-group">
+						<input type="text" name="name" class="form-control" id="name-box" placeholder="搜索：" style="max-width: 300px;" >
+						<h2>职业</h2>
+						<div>
+							<input type="radio" id="Druid" name="class" value="Druid">
+							<label> 德鲁伊 </label>
+							<input type="radio" id="Hunter" name="class" value="Hunter">
+							<label> 猎人 </label>
+							<input type="radio" id="Mage" name="class" value="Mage">
+							<label> 法师 </label>
+							<input type="radio" id="Paladin" name="class" value="Paladin">
+							<label> 圣骑 </label>
+							<br/>
+							<input type="radio" id="Priest" name="class" value="Priest">
+							<label> 牧师 </label>
+							<input type="radio" id="Rogue" name="class" value="Rogue">
+							<label> 盗贼 </label>
+							<input type="radio" id="Shaman" name="class" value="Shaman">
+							<label> 萨满 </label>
+							<input type="radio" id="Warlock" name="class" value="Warlock">
+							<label> 术士 </label>
+							<input type="radio" id="Warrior" name="class" value="Warrior">
+							<label> 战士 </label>
+						</div>
+						<div>
+							<input type="radio" id="neutral only" name="class_display" value="neutral only">
+							<label> 只显示中立卡 </label>
+							<input type="radio" id="class only" name="class_display" value="class only">
+							<label> 只显示职业卡 </label>
+						</div>
+						<h2>消耗</h2>
+						<div>
+							<input type="checkbox" id="0" name="cost" value="0"> 0
+							<input type="checkbox" id="1" name="cost" value="1"> 1
+							<input type="checkbox" id="2" name="cost" value="2"> 2
+							<input type="checkbox" id="3" name="cost" value="3"> 3
+							<input type="checkbox" id="4" name="cost" value="4"> 4
+							<input type="checkbox" id="5" name="cost" value="5"> 5
+							<input type="checkbox" id="6" name="cost" value="6"> 6
+							<br/>
+							<input type="checkbox" id="7+" name="cost" value="7+"> 7+
+						</div>
+						<h2> 稀有度 </h2>
+						<div>
+							<input type="checkbox" id="free" name="rare" value="free"> 免费
+							<input type="checkbox" id="common" name="rare" value="common"> 普通
+							<input type="checkbox" id="rare" name="rare" value="rare"> 稀有
+							<input type="checkbox" id="epic" name="rare" value="epic"> 史诗
+							<input type="checkbox" id="legendary" name="rare" value="legendary"> 传说
+						</div>
+						<h2> 卡片类型 </h2>
+						<div>
+							<input type="checkbox" id="Minion" name="type" value="Minion"> 随从 
+							<input type="checkbox" id="Spell" name="type" value="Spell"> 法术
+							<input type="checkbox" id="Weapon" name="type" value="Weapon"> 武器 
+							<input type="checkbox" id="Hero" name="type" value="Hero"> 英雄
+						</div>
+						<h2> 种族 </h2>
+						<div>
+							<input type="checkbox" id="Beast" name="race" value="Beast"> 野兽
+							<input type="checkbox" id="Demon" name="race" value="Demon"> 恶魔
+							<input type="checkbox" id="Dragon" name="race" value="Dragon"> 龙
+							<input type="checkbox" id="Elemental" name="race" value="Elemental"> 元素
+							<input type="checkbox" id="Mech" name="race" value="Mech"> 机械
+							<input type="checkbox" id="Murloc" name="race" value="Murloc"> 鱼人
+							<input type="checkbox" id="Pirate" name="race" value="Pirate"> 海盗
+							<input type="checkbox" id="Totem" name="race" value="Totem"> 图腾
+						</div>
+						<h2> 机制 </h2>
+						<div>
+							<input type="checkbox" id="battlecry" name="mechanism" value="battlecry"> 战吼
+							<input type="checkbox" id="choose one" name="mechanism" value="choose one"> 抉择
+							<input type="checkbox" id="combo" name="mechanism" value="combo"> 连击
+							<input type="checkbox" id="deathrattle" name="mechanism" value="deathrattle"> 亡语
+							<input type="checkbox" id="divine shield" name="mechanism" value="divine shield"> 圣盾
+							<input type="checkbox" id="overload" name="mechanism" value="overload"> 过载
+							<input type="checkbox" id="poisonous" name="mechanism" value="poisonous"> 剧毒
+							<input type="checkbox" id="secret" name="mechanism" value="secret"> 奥秘
+							<input type="checkbox" id="silence" name="mechanism" value="silence"> 沉默
+							<input type="checkbox" id="taunt" name="mechanism" value="taunt"> 嘲讽
+						</div>
+						<div>
+							<input type="checkbox" id="windfury" name="mechanism" value="windfury"> 风怒
+							<input type="checkbox" id="freeze" name="mechanism" value="freeze"> 冻结
+							<input type="checkbox" id="discover" name="mechanism" value="discover"> 发现
+							<input type="checkbox" id="lifesteal" name="mechanism" value="lifesteal"> 吸血 
+							<input type="checkbox" id="echo" name="mechanism" value="echo"> 回响
+							<input type="checkbox" id="rush" name="mechanism" value="rush"> 突袭
+							<input type="checkbox" id="magnetic" name="mechanism" value="magnetic"> 磁力 
+							<input type="checkbox" id="overkill" name="mechanism" value="overkill"> 超杀
+							<input type="checkbox" id="twinspell" name="mechanism" value="twinspell"> 双生法术
+						</div>
+					</div>
+					<input type="reset" />
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			<br>
+			{% for error in errors %}
+				<h4>{{ error }}</h4>
+			{% endfor %}
+		</div>
+		 <div class="cards">
+          {% if results %}
+            <h2>Frequencies</h2>
+            <br>
+            <div id="results">
+              <table class="table table-striped" style="max-width: 300px;">
+                <thead>
+                  <tr>
+                    <th>Word</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                {% for result in results%}
+                  <tr>
+                    <td>{{ result[0] }}</td>
+                    <td>{{ result[1] }}</td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          {% endif %}
+        </div>
+		</main>
+		<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	</body>
+</html>
