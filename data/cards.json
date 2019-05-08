@@ -1,0 +1,372 @@
+[
+	{
+		"name": "Acornbearer",
+		"cost": 1,
+		"rare": "common",
+		"class": "Druid",
+		"effect": {
+			"Deathrattle": "Add two 1/1 Squirrels to your hand.",
+			"Minion": "",
+			"Attack": "2",
+			"Health": "1"
+		}
+	},
+	{
+		"name": "Dreamway Guardians",
+		"cost": 2,
+		"rare": "rare",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Summon two 1/2 Dryads with Lifesteal."
+		}
+	},
+	{
+		"name": "Power of the wild",
+		"cost": 2,
+		"rare": "common",
+		"class": "Druid",
+		"effect": {
+			"Spell": "",
+			"Choose One": "Give your minions +1/+1; or Summon a 3/2 Panther."
+		}
+	},
+	{
+		"name": "Wrath",
+		"cost": 2,
+		"rare": "common",
+		"class": "Druid",
+		"effect": {
+			"Spell": "",
+			"Choose One": "Deal 3 damage to a minion; or 1 damage and draw a card."
+		}
+	},
+	{
+		"name": "Blessing of the Ancients",
+		"cost": 3,
+		"rare": "common",
+		"class": "Druid",
+		"effect": {
+			"Spell": "",
+			"Twinspell": "Give your minions +1/+1."
+		}
+	},
+	{
+		"name": "Landscaping",
+		"cost": 3,
+		"rare": "common",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Summon two 2/2 Treants."
+		}
+	},
+	{
+		"name": "Savage Roar",
+		"cost": 3,
+		"rare": "free",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Give your characters +2 Attack this turn."
+		}
+	},
+	{
+		"name": "Archmage Vargoth",
+		"cost": 4,
+		"rare": "legendary",
+		"class": "Neutral",
+		"effect": {
+			"Attack": "2",
+			"Health": "6",
+			"At the end of your turn": "cast a spell you've cast this turn(targets are random).",
+			"Minion": ""
+		}
+	},
+	{
+		"name": "Soul of the Forest",
+		"cost": 4,
+		"rare": "common",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Give your minions \" Deathrattle: Summon a 2/2 Treant\"."
+		}
+	},
+	{
+		"name": "Swipe",
+		"cost": 4,
+		"rare": "free",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Deal 4 damage to an enemy and 1 damage to all other enemies."
+		}
+	},
+	{
+		"name": "Wispering Woods",
+		"cost": 4,
+		"rare": "epic",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Summon a 1/1 Wisp for each card in your hand."
+		}
+	},
+	{
+		"name": "The Forest's Aid",
+		"cost": 8,
+		"rare": "rare",
+		"class": "Druid",
+		"effect": {
+			"Spell": "",
+			"Twinspell": "Summon five 2/2 Treants."
+		}
+	},
+	{
+		"name": "Keeper Stalladris",
+		"cost": 2,
+		"rare": "legendary",
+		"class": "Druid",
+		"effect": {
+			"Attack": "2",
+			"Health": "3",
+			"Minion": "After your cast a Choose One spell, add copies of both choices to your hand."
+		}
+	},
+	{
+		"name": "Mark of the Loa",
+		"cost": 4,
+		"rare": "epic",
+		"class": "Druid",
+		"effect": {
+			"Spell": "",
+			"Choose One": "Give a minion +2/+4 and Taunt; or Summon two 3/2 Raptors."
+		}
+	},
+	{
+		"name": "EVIL Cable Rat",
+		"cost": 2,
+		"rare": "Common",
+		"class": "Neutral",
+		"effect": {
+			"Attack": "1",
+			"Health": "1",
+			"Minion": "",
+			"Battlecry": "Add a Lackey to your hand."
+		}
+	},
+	{
+		"name": "Force of Nature",
+		"cost": 5,
+		"rare": "epic",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Summon three 2/2 Treants"
+		}
+	},
+	{
+		"name": "Crystalsong Portal",
+		"cost": 2,
+		"rare": "epic",
+		"class": "Druid",
+		"effect": {
+			"Spell": "Discover a Druid minion. If your hand has no minions, keep all 3.",
+			"Discover": ""
+		}
+	},
+	{
+		"name": "Shimmerfly",
+		"cost": 1,
+		"rare": "rare",
+		"class": "Hunter",
+		"effect": {
+			"Attack": "1",
+			"Health": "1",
+			"Minion": "",
+			"Beast": "",
+			"Deathrattle": "Add a random Hunter spell to your hand."
+		}
+	},
+	{
+		"name": "Springpaw",
+		"cost": 1,
+		"rare": "common",
+		"class": "Hunter",
+		"effect": {
+			"Attack": "1",
+			"Health": "1",
+			"Minion": "",
+			"Beast": "",
+			"Rush": "",
+			"Battlecry": "Add a 1/1 Lynx with Rush to your hand"
+		}
+	},
+	{
+		"name": "Timber Wolf",
+		"cost": 1,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Attack": "1",
+			"Health": "1",
+			"Minion": "",
+			"Beast": "Your other Beasts have +1 Attack"
+		}
+	},
+	{
+		"name": "Tracking",
+		"cost": 1,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "Look at the top 3 cards of your deck. Draw one and discard the others."
+		}
+	},
+	{
+		"name": "Headhunter's Hatchet",
+		"cost": 2,
+		"rare": "common",
+		"class": "Hunter",
+		"effect": {
+			"Attack": "2",
+			"Durability": "2", 
+			"Battlecry": "if you control a Beast, Gain +1 Durability"
+		}
+	},
+	{
+		"name": "Scavenging Hyena",
+		"cost": 2,
+		"rare": "common",
+		"class": "Hunter",
+		"effect": {
+			"Attack": "2",
+			"Health": "2",
+			"Minion": "Whenever a friendly Beast dies, gain +2/+1.",
+			"Beast": ""
+		}
+	},
+	{
+		"name": "Animal Companion",
+		"cost": 3,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "Summon a random Beast Companion."
+		}
+	},
+	{
+		"name": "Kill Command",
+		"cost": 3,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "Deal 3 damage. If you control a Beast, deal 5 damage instead."
+		}
+	},
+	{
+		"name": "Master's Call",
+		"cost": 3,
+		"rare": "epic",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "",
+			"Discover": "Discover a minion in your desk. If all 3 are Beasts, draw them all."
+		}
+	},
+	{
+		"name": "Unleash the Hounds",
+		"cost": 3,
+		"rare": "common",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "For each enemy minion, summon a 1/1 Hound with Charge."
+		}
+	},
+	{
+		"name": "Dire Frenzy",
+		"cost": 4,
+		"rare": "common",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "Give a Beast +3/+3. Shuffle 3 copies into your desk with +3/+3."
+		}
+	},
+	{
+		"name": "Tundra Rhino",
+		"cost": 5,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Minion": "Your Beasts have Charge.",
+			"Attack": "2",
+			"Health": "5",
+			"Beast": ""
+		}
+	},
+	{
+		"name": "Unleash the Beast",
+		"cost": 6,
+		"rare": "rare",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "",
+			"Twinspell": "Summon a 5/5 Wyvern with Rush"
+		}
+	},
+	{
+		"name": "Zul'jin",
+		"cost": 10,
+		"rare": "legendary",
+		"class": "Hunter",
+		"effect": {
+			"Hero": "",
+			"Shield": "5",
+			"Battlecry": "Cast all spells you've played this game (targets chosen randomly)."
+		}
+	},
+	{
+		"name": "Deadly Shot",
+		"cost": 3,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Spell": "Destroy a random enemy minion."
+		}
+	},
+	{
+		"name": "Hench-Clan Hogesteed",
+		"cost": 2,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Beast": "", 
+			"Minion": "",
+			"Rush": "", 
+			"Attack": "2",
+			"Health": "1",
+			"Deathrattle": "Summon a 1/1 Murloc."
+		}
+	},
+	{
+		"name": "Vicious Scalehide",
+		"cost": 2,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Beast": "", 
+			"Minion": "",
+			"Rush": "", 
+			"Attack": "1",
+			"Health": "3",
+			"Lifesteal": ""
+		}
+	},
+	{
+		"name": "Witchwood Grizzly",
+		"cost": 5,
+		"rare": "free",
+		"class": "Hunter",
+		"effect": {
+			"Beast": "", 
+			"Minion": "",
+			"Attack": "3",
+			"Health": "12",
+			"Battlecry": "Lose 1 Health for each card in your opponent's hand."
+		}
+	}
+]
