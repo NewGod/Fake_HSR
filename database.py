@@ -1,16 +1,15 @@
 import os
 import json
 import MySQLdb
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple, Sequence
 
 
-SqlItem = Dict[str: Any]
+SqlItem = Dict[str, Any]
 
 
-def formate_colomn(keys: list) -> str:
+def formate_colomn(keys: Sequence[str]) -> str:
     a = '('
     for x in keys:
-        assert isinstance(x, str)
         if a[-1] != "(":
             a += f' ,`{x}`'
     a += ')'
@@ -23,7 +22,7 @@ class DataBase:
     password: str
     config_path: str
 
-    def __init__(self, config_path: str):
+    def __init__(self, config_path: str = "config.json"):
         self.config_path = config_path
         with open(self.config_path) as f:
             config = json.load(f)
