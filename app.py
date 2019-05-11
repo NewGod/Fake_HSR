@@ -17,17 +17,16 @@ def create_table(file, database):
 
 
 @app.cli.command(help="Insert the cards and desks information.")
-@click.option("--dir", default="data/", type=str, help="the data path")
+@click.option("--dir_path", default="data/", type=str, help="the data path")
 @click.option("--database", default="config.json", type=str, help="the sql config file")
 def insert_data(dir_path, database):
-    with open(os.path.join(dir_path, "cards.json")) as f:
-        for card in json.dump(f):
-            with DataBase(database) as db:
+    with DataBase(database) as db:
+        with open(os.path.join(dir_path, "cards.json")) as f:
+            for card in json.load(f):
                 db.add_card(card)
-    with open(os.path.join(dir_path, "desks.json")) as f:
-        for desk in json.dump(f):
-            with DataBase(database) as db:
-                db.add_card(desk)
+        with open(os.path.join(dir_path, "desks.json")) as f:
+            for desk in json.load(f):
+                db.add_desk(desk)
 
 
 @app.route("/")
