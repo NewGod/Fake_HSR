@@ -46,7 +46,7 @@ def card_filter(f: Optional[Dict] = None):
         if 'mechanism' in f:
             sql += cond_constructer("c.`effect type`", f.getlist('mechanism'), "or")
         sql += 'false) and '
-    sql += 'true order by a.`cost`'
+    sql += 'true order by a.`cost`, a.`card name`'
     with DataBase() as db:
         ret = db.query(sql)
     return ret

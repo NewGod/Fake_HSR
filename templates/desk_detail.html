@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fake_HSR</title>
+		<style type="text/css">
+table{
+	border-collapse:collapse;
+}
+table, td, th{
+	border:1px solid black;
+}
+td{	
+	text-align:center;
+}
+		</style>
+	</head>
+	<body>
+		<h1> Desk: {{desk["build type"]}} </h1> 
+		<div class="cards">
+			<h2>Cards</h2>
+			<br>
+			<div id="results">
+				<table class="table table-striped" style="max-width: 300px;">
+					<thead>
+						<tr>
+							{% for title in titles %}
+							<th>{{ title }}</th>
+							{% endfor %}
+						</tr>
+					</thead>
+					{% for card in cards %}
+					<tr>
+						{% for title in titles %} 
+						<td>{{ card[title] }}</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+		<a href="../desks">Back</a>
+	</body>
+</html>

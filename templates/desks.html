@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<title> Fake_HSR </title> 
+		<style type="text/css">
+table{
+	border-collapse:collapse;
+}
+table, td, th{
+	border:1px solid black;
+}
+td{	
+	text-align:center;
+}
+		</style>
+	</head>
+	<body>
+		<h1> Desk Overview </h1>
+		<div id="desk table"> 
+			<table class="table table-striped"> 
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>class</th>
+						<th>name</th>
+						<th>match times</th>
+						<th>winner rate</th>
+						<th>average round</th>
+						<th>detail</th>
+					</tr>
+				</thead>
+				{% for desk in desks %}
+				<tr>
+					<td>{{desk["id"]}}</td>
+					<td>{{desk["class"]}}</td>
+					<td>{{desk["name"]}}</td>
+					<td>{{desk["match times"]}}</td>
+					<td>{{desk["winner rate"]}}</td> 
+					<td>{{desk["average round"]}}</td>
+					<td>
+						<a href="desk_detail/{{desk["id"]}}">
+							<button>detail</button>
+						</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
+
+
+
+
