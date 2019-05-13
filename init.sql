@@ -6,21 +6,21 @@
 
 drop table if exists `card effect state`;
 
-drop table if exists `card`;
-
 drop table if exists `desk detail`;
+
+drop table if exists `player card`;
+
+drop table if exists `player desk`;
+
+drop table if exists `match`;
+
+drop table if exists `card`;
 
 drop table if exists `desk`;
 
 drop table if exists `effect`;
 
-drop table if exists `match`;
-
-drop table if exists `player card`;
-
 drop table if exists `player`;
-
-drop table if exists `player desk`;
 
 /*==============================================================*/
 /* Table: `card effect state`                                   */
@@ -68,9 +68,9 @@ create table `desk`
 );
 
 /*==============================================================*/
-/* Table: effects                                               */
+/* Table: effect                                               */
 /*==============================================================*/
-create table `effects`
+create table `effect`
 (
    `description`          char(100),
    `effect id`          int not null auto_increment,
@@ -79,9 +79,9 @@ create table `effects`
 );
 
 /*==============================================================*/
-/* Table: matches                                               */
+/* Table: `match`                                               */
 /*==============================================================*/
-create table `matches`
+create table `match`
 (
    `round`                int,
    `process`              blob,
@@ -127,39 +127,39 @@ create table `player desk`
    primary key (`player desk id`)
 );
 
-alter table `card effect state` add constraint effot foreign key (`effect id`)
-      references effects (`effect id`) on delete restrict on update restrict;
+alter table `card effect state` add constraint FK_effot foreign key (`effect id`)
+      references effect (`effect id`) on delete restrict on update restrict;
 
-alter table `card effect state` add constraint card foreign key (`card id`)
+alter table `card effect state` add constraint FK_card foreign key (`card id`)
       references card (`card id`) on delete restrict on update restrict;
 
-alter table `desk detail` add constraint desk foreign key (`desk id`)
+alter table `desk detail` add constraint FK_desk foreign key (`desk id`)
       references desk (`desk id`) on delete restrict on update restrict;
 
-alter table `desk detail` add constraint card foreign key (`card id`)
+alter table `desk detail` add constraint FK_card2 foreign key (`card id`)
       references card (`card id`) on delete restrict on update restrict;
 
-alter table matches add constraint loser foreign key (`loser id`)
+alter table `match` add constraint FK_loser foreign key (`loser id`)
       references player (`player id`) on delete restrict on update restrict;
 
-alter table matches add constraint loser_desk foreign key (`loser desk id`)
+alter table `match` add constraint FK_loser_desk foreign key (`loser desk id`)
       references desk (`desk id`) on delete restrict on update restrict;
 
-alter table matches add constraint winner foreign key (`winner id`)
+alter table `match` add constraint FK_winner foreign key (`winner id`)
       references player (`player id`) on delete restrict on update restrict;
 
-alter table matches add constraint winner_desk foreign key (`winner desk id`)
+alter table `match` add constraint FK_winner_desk foreign key (`winner desk id`)
       references desk (`desk id`) on delete restrict on update restrict;
 
-alter table `player card` add constraint FK_card2 foreign key (`player id`)
+alter table `player card` add constraint FK_card3 foreign key (`player id`)
       references player (`player id`) on delete restrict on update restrict;
 
-alter table `player card` add constraint FK_player2 foreign key (`card id`)
+alter table `player card` add constraint FK_player1 foreign key (`card id`)
       references card (`card id`) on delete restrict on update restrict;
 
-alter table `player desk` add constraint player foreign key (`player id`)
+alter table `player desk` add constraint FK_player2 foreign key (`player id`)
       references player (`player id`) on delete restrict on update restrict;
 
-alter table `player desk` add constraint desk foreign key (`desk id`)
+alter table `player desk` add constraint FK_desk2 foreign key (`desk id`)
       references desk (`desk id`) on delete restrict on update restrict;
 

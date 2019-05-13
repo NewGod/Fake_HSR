@@ -16,17 +16,17 @@
 	float:left;
 }
 .cards {
-    min-height: 100vh;
-    padding: 10px;
-    width: calc(100% - 350px);
+	min-height: 100vh;
+	padding: 10px;
+	width: calc(100% - 350px);
 	float:right;
 }
 		</style>
 	</head>
 	<body>
 		<main class = "main">
-		<div class="infobox">
-			<h1>Cards</h1>
+			<div class="infobox">
+				<h1>Cards</h1>
 				<form role="form" method='POST' action='/cards'>
 					<div class="form-group">
 						<input type="text" name="name" class="form-control" id="name-box" placeholder="搜索：" style="max-width: 300px;" >
@@ -60,15 +60,15 @@
 						</div>
 						<h2>消耗</h2>
 						<div>
-							<input type="checkbox" id="0" name="cost" value="0"> 0
-							<input type="checkbox" id="1" name="cost" value="1"> 1
-							<input type="checkbox" id="2" name="cost" value="2"> 2
-							<input type="checkbox" id="3" name="cost" value="3"> 3
-							<input type="checkbox" id="4" name="cost" value="4"> 4
-							<input type="checkbox" id="5" name="cost" value="5"> 5
-							<input type="checkbox" id="6" name="cost" value="6"> 6
+							<input type="checkbox" id="0" name="cost" value=0> 0
+							<input type="checkbox" id="1" name="cost" value=1> 1
+							<input type="checkbox" id="2" name="cost" value=2> 2
+							<input type="checkbox" id="3" name="cost" value=3> 3
+							<input type="checkbox" id="4" name="cost" value=4> 4
+							<input type="checkbox" id="5" name="cost" value=5> 5
+							<input type="checkbox" id="6" name="cost" value=6> 6
 							<br/>
-							<input type="checkbox" id="7+" name="cost" value="7+"> 7+
+							<input type="checkbox" id="7+" name="cost" value=7> 7+
 						</div>
 						<h2> 稀有度 </h2>
 						<div>
@@ -124,33 +124,35 @@
 					<input type="reset" />
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
-			<br>
-			{% for error in errors %}
+				<br>
+				{% for error in errors %}
 				<h4>{{ error }}</h4>
-			{% endfor %}
-		</div>
-		 <div class="cards">
-          {% if results %}
-            <h2>Frequencies</h2>
-            <br>
-            <div id="results">
-              <table class="table table-striped" style="max-width: 300px;">
-                <thead>
-                  <tr>
-                    <th>Word</th>
-                    <th>Count</th>
-                  </tr>
-                </thead>
-                {% for result in results%}
-                  <tr>
-                    <td>{{ result[0] }}</td>
-                    <td>{{ result[1] }}</td>
-                  </tr>
-                {% endfor %}
-              </table>
-            </div>
-          {% endif %}
-        </div>
+				{% endfor %}
+			</div>
+			<div class="cards">
+				{% if results %}
+				<h2>Cards</h2>
+				<br>
+				<div id="results">
+					<table class="table table-striped" style="max-width: 300px;">
+						<thead>
+							<tr>
+								{% for title in titles %}
+								<th>{{ title }}</th>
+								{% endfor %}
+							</tr>
+						</thead>
+						{% for result in results %}
+						<tr>
+							{% for title in titles %} 
+							<td>{{ result[title] }}</td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+				{% endif %}
+			</div>
 		</main>
 		<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

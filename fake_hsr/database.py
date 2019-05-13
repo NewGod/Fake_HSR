@@ -54,7 +54,7 @@ class DataBase:
         self.db.close()
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if exc_type is not None:
+        if exc_type is None:
             self.exit()
         else:
             self.db.rollback()
@@ -67,8 +67,7 @@ class DataBase:
         with open(path) as f:
             sqlFile = f.read()
         sqlCommands = sqlFile.split(';')
-        for command in sqlCommands[:-1]:
-            self.cursor.execute(command)
+        self.cursor.executemany(sqlCommands[:-1], None)
 
     def insert(self, table: str, item: SqlItem):
         self.cursor.execute(
@@ -95,6 +94,8 @@ class DataBase:
     def add_desk(self, desk: SqlItem):
         cards = desk["cards"]
         del desk["cards"]
+        desk["build type"] = desk["name"]
+        del desk["name"]
         desk_id = self.insert("desk", desk)
         assert isinstance(cards, list)
         for x in cards:
@@ -107,10 +108,32 @@ class DataBase:
             self.insert("desk detail", {"card id": card_id, "desk id": desk_id})
 
     def add_user(self, user: SqlItem):
-        pass
+        user["player name"] = user["name"]
+        cards = user["cards"]
+        desks = user["desks"]
+        del user["name"]
+        del user["cards"]
+        del user["desks"]
+        player_id = self.insert("player", user)
+        for x in cards:
+            tmp = self.query('select * from `card` where `card name` = %s;',
+                             args=(x,))
+            if len(tmp) == 0:
+                raise Exception("No this cards: {x}")
+            else:
+                card_id = tmp[0]["card id"]
+            self.insert("player card", {"card id": card_id, "player id": player_id})
+        for x in desks:
+            tmp = self.query('select * from `desk` where `build type` = %s;',
+                             args=(x,))
+            if len(tmp) == 0:
+                raise Exception("No this desk: {x}")
+            else:
+                desk_id = tmp[0]["desk id"]
+            self.insert("player desk", {"desk id": desk_id, "player id": player_id})
 
     def add_match(self, match: SqlItem):
-        pass
+        self.insert("match", match)
 
     def query(self, cmd: str, *, maxrows: int = 0, args=None) -> Tuple[SqlItem]:
         self.cursor.execute(cmd, args)

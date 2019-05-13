@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 import os
 import click
-from database import DataBase
 import json
+from fake_hsr import DataBase
+from fake_hsr import card_filter
 
 
 app = Flask(__name__)
@@ -27,6 +28,9 @@ def insert_data(dir_path, database):
         with open(os.path.join(dir_path, "desks.json")) as f:
             for desk in json.load(f):
                 db.add_desk(desk)
+        with open(os.path.join(dir_path, "users.json")) as f:
+            for user in json.load(f):
+                db.add_user(user)
 
 
 @app.route("/")
@@ -36,9 +40,10 @@ def index():
 
 @app.route("/cards", methods=['GET', "POST"])
 def card():
-    if request.method == "POST":
-        print(request.form)
-    return render_template('card.html')
+    print(request.form)
+    results = card_filter(request.form)
+    title = ["cost", "card name", "class", "rare"]
+    return render_template('card.html', results=results, titles=title)
 
 
 # vim: ts=4 sw=4 sts=4 expandtab

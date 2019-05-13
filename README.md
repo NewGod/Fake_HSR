@@ -6,7 +6,7 @@ this is a midterm project in PKU Introduction to the database (Honor track). Thi
 
 ```shell
 pip install -r requirement  # install requirement
-./env.sh  # setting the environment
+source env.sh  # setting the environment
 flask --help  # see what command HSR have
 ```
 
