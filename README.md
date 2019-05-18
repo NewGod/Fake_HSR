@@ -14,10 +14,10 @@ To run the project, you need to add a `config.json` like this (This will be chan
 
 ```json
 {
-  "address": XXX,
-  "user": XXX,
-  "password": XXX,
-  "database": XXX
+  "address": "XXX",
+  "user": "XXX",
+  "password": "XXX",
+  "database": "XXX"
 }
 ```
 

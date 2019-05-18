@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import os
 import click
 import json
@@ -65,23 +65,26 @@ def desk():
 @app.route("/desk_detail/<int:idx>")
 def desk_detail(idx: int):
     with DataBase() as db:
-        desk = db.query(f"select * from `desk` where `desk id` = {idx}")[0]
-        cards = db.query(f"select b.`cost` cost, b.`card name` `card name`, b.`class` `class`, b.`rare` rare from `desk detail` a join `card` b on a.`card id` = b.`card id` where a.`desk id` = {idx} order by b.`cost`, b.`card name`")
+        desk = db.query("select * from `desk` where `desk id` = %d", args=[idx])[0]
+        cards = db.query("select b.`cost` cost, b.`card name` `card name`, b.`class` `class`, b.`rare` rare from `desk detail` a join `card` b on a.`card id` = b.`card id` where a.`desk id` = %d order by b.`cost`, b.`card name`", args=[idx])
     title = ["cost", "card name", "class", "rare"]
     return render_template('desk_detail.html', desk=desk, cards=cards, titles=title)
 
 
-@app.route("/user")
-def user():
-    pass
-
-
-@app.route("/user_detail/<int:idx>")
-def user_detail(idx: int):
-    pass
-
-
-@app.match("/match")
+@app.route("/match", methods=['GET', "POST"])
 def match():
-    pass
+    if request.method == "POST":
+        with DataBase() as db:
+            db.insert("match", request.form)
+        info = "Success!"
+    with DataBase() as db:
+        players = db.query("select * from `player` order by `player id`")
+    return render_template('match.html', players=players, info=info)
+
+
+@app.route("/get_player_desk/<int:idx>")
+def get_player_desk(idx: int):
+    with DataBase() as db:
+        desks = db.query('select b.`desk id` id, b.`build type` name from `player desk` a join `desk` b on a.`desk id`=b.`desk id` where a.`player id`=%d order by b.`desk id`', [idx])
+    return jsonify(desks)
 # vim: ts=4 sw=4 sts=4 expandtab

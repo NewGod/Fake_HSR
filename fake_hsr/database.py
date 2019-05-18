@@ -1,10 +1,20 @@
 import os
 import json
 import pymysql
-from typing import Dict, Any, Tuple, Sequence
+from typing import Dict, Any, Tuple, Sequence, Optional, Union
 
 
 SqlItem = Dict[str, Any]
+def escape_name(s):
+    """Escape name to avoid SQL injection and keyword clashes.
+
+    Doubles embedded backticks, surrounds the whole in backticks.
+
+    Note: not security hardened, caveat emptor.
+
+    """
+    return '`{}`'.format(s.replace('`', '``'))
+
 
 
 def formate_colomn(keys: Sequence[str]) -> str:
@@ -50,15 +60,15 @@ class DataBase:
         self.db.commit()
 
     def exit(self):
-        self.db.commit()
+        self.commit()
         self.db.close()
 
     def __exit__(self, exc_type, exc_value, traceback):
         if exc_type is None:
-            self.exit()
+            self.commit()
         else:
             self.db.rollback()
-            self.db.close()
+        self.db.close()
 
     def execute(self, cmd: str):
         self.execute(cmd)
@@ -67,12 +77,17 @@ class DataBase:
         with open(path) as f:
             sqlFile = f.read()
         sqlCommands = sqlFile.split(';')
-        self.cursor.executemany(sqlCommands[:-1], None)
+        for x in sqlCommands[:-1]:
+            self.cursor.execute(x)
 
     def insert(self, table: str, item: SqlItem):
+        names = list(item.keys())
+        cols = ', '.join(map(escape_name, names))  # assumes the keys are *valid column names*.
+        placeholders = ', '.join(['%({})s'.format(name) for name in names])
+
         self.cursor.execute(
-            f'insert into `{table}` {formate_colomn(item.keys())} \
-            value {tuple(item.values())}'
+            f'insert into `{table}` ({cols}) \
+            value ({placeholders})', item
         )
         return list(self.query("SELECT LAST_INSERT_ID();")[0].values())[0]
 
@@ -135,7 +150,7 @@ class DataBase:
     def add_match(self, match: SqlItem):
         self.insert("match", match)
 
-    def query(self, cmd: str, *, maxrows: int = 0, args=None) -> Tuple[SqlItem]:
+    def query(self, cmd: str, *, maxrows: int = 0, args: Optional[Union[Sequence, Dict]] = None) -> Tuple[SqlItem]:
         self.cursor.execute(cmd, args)
         if maxrows == 0:
             return self.cursor.fetchall()
