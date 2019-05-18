@@ -4,6 +4,7 @@ import click
 import json
 from fake_hsr import DataBase
 from fake_hsr import card_filter
+from fake_hsr import insert_match
 
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app = Flask(__name__)
 
 @app.cli.command(help="Create the data table.")
 @click.option("--file", default="init.sql", type=str, help="the initial sql file.")
-@click.option("--database", default="config.json", type=str, help="the sql config file")
+@click.option("--database", default=".my.cnf", type=str, help="the sql config file")
 def create_table(file, database):
     with DataBase(database) as db:
         db.execute_file(file)
@@ -19,7 +20,7 @@ def create_table(file, database):
 
 @app.cli.command(help="Insert the cards and desks information.")
 @click.option("--dir_path", default="data/", type=str, help="the data path")
-@click.option("--database", default="config.json", type=str, help="the sql config file")
+@click.option("--database", default=".my.cnf", type=str, help="the sql config file")
 def insert_data(dir_path, database):
     with DataBase(database) as db:
         with open(os.path.join(dir_path, "cards.json")) as f:
@@ -73,10 +74,13 @@ def desk_detail(idx: int):
 
 @app.route("/match", methods=['GET', "POST"])
 def match():
+    info = None
     if request.method == "POST":
-        with DataBase() as db:
-            db.insert("match", request.form)
-        info = "Success!"
+        try:
+            insert_match(request.form)
+            info = "Success!"
+        except Exception as e:
+            info = str(e)
     with DataBase() as db:
         players = db.query("select * from `player` order by `player id`")
     return render_template('match.html', players=players, info=info)

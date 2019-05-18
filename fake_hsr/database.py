@@ -5,6 +5,8 @@ from typing import Dict, Any, Tuple, Sequence, Optional, Union
 
 
 SqlItem = Dict[str, Any]
+
+
 def escape_name(s):
     """Escape name to avoid SQL injection and keyword clashes.
 
@@ -14,7 +16,6 @@ def escape_name(s):
 
     """
     return '`{}`'.format(s.replace('`', '``'))
-
 
 
 def formate_colomn(keys: Sequence[str]) -> str:
@@ -33,14 +34,11 @@ class DataBase:
     password: str
     config_path: str
 
-    def __init__(self, config_path: str = "config.json"):
+    def __init__(
+            self,
+            config_path: str = "./.my.cnf"
+    ):
         self.config_path = config_path
-        with open(self.config_path) as f:
-            config = json.load(f)
-        self.address = config["address"]
-        self.user = config["user"]
-        self.password = config["user"]
-        self.database = config["database"]
         self._connect()
 
     def __enter__(self):
@@ -48,10 +46,7 @@ class DataBase:
 
     def _connect(self):
         self.db = pymysql.connect(
-            host=self.address,
-            user=self.user,
-            passwd=self.password,
-            db=self.database,
+            read_default_file=self.config_path,
             cursorclass=pymysql.cursors.DictCursor
         )
         self.cursor = self.db.cursor()

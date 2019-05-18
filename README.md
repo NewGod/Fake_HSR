@@ -10,15 +10,15 @@ source env.sh  # setting the environment
 flask --help  # see what command HSR have
 ```
 
-To run the project, you need to add a `config.json` like this (This will be change into [mysql user config file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html) later)
+To run the project, you need to add a [mysql user config file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html) like this
 
-```json
-{
-  "address": "XXX",
-  "user": "XXX",
-  "password": "XXX",
-  "database": "XXX"
-}
+```
+[client]
+host = XXX
+port = XXX
+user = XXX
+password = XXX
+database = XXX
 ```
 
 Then run
