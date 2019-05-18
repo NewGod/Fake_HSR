@@ -73,7 +73,11 @@ class DataBase:
             sqlFile = f.read()
         sqlCommands = sqlFile.split(';')
         for x in sqlCommands[:-1]:
-            self.cursor.execute(x)
+            try:
+                self.cursor.execute(x)
+            except Exception as e:
+                print(x)
+                raise e
 
     def insert(self, table: str, item: SqlItem):
         names = list(item.keys())

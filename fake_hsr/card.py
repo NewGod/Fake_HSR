@@ -38,13 +38,13 @@ def card_filter(f: Optional[Dict] = None):
     if 'rare' in f:
         sql += cond_constructer("a.`rare`", f.getlist('rare'), "and")
     if 'type' in f or 'race' in f or 'mechanism' in f:
-        sql += "a.`card id` = Any(select b.`card id` from `card effect state` b join `effect` c on b.`effect id` = c.`effect id` where "
+        sql += "a.`card id` = Any(select b.`card id` from `card effect view` b where "
         if 'type' in f:
-            sql += cond_constructer("c.`effect type`", f.getlist('type'), "or")
+            sql += cond_constructer("b.`effect type`", f.getlist('type'), "or")
         if 'race' in f:
-            sql += cond_constructer("c.`effect type`", f.getlist('race'), "or")
+            sql += cond_constructer("b.`effect type`", f.getlist('race'), "or")
         if 'mechanism' in f:
-            sql += cond_constructer("c.`effect type`", f.getlist('mechanism'), "or")
+            sql += cond_constructer("b.`effect type`", f.getlist('mechanism'), "or")
         sql += 'false) and '
     sql += 'true order by a.`cost`, a.`card name`'
     with DataBase() as db:

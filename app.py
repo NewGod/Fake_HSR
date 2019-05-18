@@ -49,7 +49,7 @@ def card():
 @app.route("/desks", methods=['GET'])
 def desk():
     with DataBase() as db:
-        desks = db.query("select a.`desk id` `id`, a.`class` `class`, a.`build type` `name`, count(b.`match id`) `match times`, count(if(b.`winner desk id` = a.`desk id`, 1, NULL)) `win`, count(if(b.`loser desk id` = a.`desk id`, 1, NULL)) `lose`, avg(b.`round`) `average round` from `desk` a left join `match` b on a.`desk id` = b.`winner desk id` or a.`desk id` = b.`loser desk id` group by a.`desk id`")
+        desks = db.query("select * from `desk view`")
     for x in desks:
         if x["match times"] is None:
             x["winner rate"] = 0
@@ -66,8 +66,8 @@ def desk():
 @app.route("/desk_detail/<int:idx>")
 def desk_detail(idx: int):
     with DataBase() as db:
-        desk = db.query("select * from `desk` where `desk id` = %d", args=[idx])[0]
-        cards = db.query("select b.`cost` cost, b.`card name` `card name`, b.`class` `class`, b.`rare` rare from `desk detail` a join `card` b on a.`card id` = b.`card id` where a.`desk id` = %d order by b.`cost`, b.`card name`", args=[idx])
+        desk = db.query("select * from `desk` where `desk id` = %s", args=[int(idx)])[0]
+        cards = db.query("select b.`cost` cost, b.`card name` `card name`, b.`class` `class`, b.`rare` rare from `desk detail` a join `card` b on a.`card id` = b.`card id` where a.`desk id` = %s order by b.`cost`, b.`card name`", args=[int(idx)])
     title = ["cost", "card name", "class", "rare"]
     return render_template('desk_detail.html', desk=desk, cards=cards, titles=title)
 
@@ -89,6 +89,6 @@ def match():
 @app.route("/get_player_desk/<int:idx>")
 def get_player_desk(idx: int):
     with DataBase() as db:
-        desks = db.query('select b.`desk id` id, b.`build type` name from `player desk` a join `desk` b on a.`desk id`=b.`desk id` where a.`player id`=%d order by b.`desk id`', [idx])
+        desks = db.query('select `desk id` id, `name` name from `player desk view` where `player id`=%s order by `desk id`', args=[int(idx)])
     return jsonify(desks)
 # vim: ts=4 sw=4 sts=4 expandtab

@@ -3,6 +3,11 @@
 /* Created on:     2019/5/12 15:32:38                           */
 /*==============================================================*/
 
+drop view if exists `card effect view`;
+
+drop view if exists `player desk view`;
+
+drop view if exists `desk view`;
 
 drop table if exists `card effect state`;
 
@@ -42,7 +47,9 @@ create table `card`
    `class`                char(100),
    `rare`                 char(100),
    `card id`            int not null AUTO_INCREMENT,
-   primary key (`card id`)
+   primary key (`card id`),
+   index (`cost`, `card name`),
+   index (`card name`)
 );
 
 /*==============================================================*/
@@ -64,7 +71,8 @@ create table `desk`
    `class`                char(100),
    `desk id`            int not null auto_increment,
    `build type`         char(100),
-   primary key (`desk id`)
+   primary key (`desk id`),
+   index (`build type`)
 );
 
 /*==============================================================*/
@@ -75,7 +83,8 @@ create table `effect`
    `description`          char(100),
    `effect id`          int not null auto_increment,
    `effect type`        char(100),
-   primary key (`effect id`)
+   primary key (`effect id`),
+   index (`effect type`, `description`)
 );
 
 /*==============================================================*/
@@ -163,3 +172,29 @@ alter table `player desk` add constraint FK_player2 foreign key (`player id`)
 alter table `player desk` add constraint FK_desk2 foreign key (`desk id`)
       references desk (`desk id`) on delete restrict on update restrict;
 
+create view `card effect view` as 
+	select 
+		b.`card id` `card id`, 
+		c.`effect id` `effect id`, 
+		c.`effect type` `effect type` 
+	from `card effect state` b join `effect` c on 
+		b.`effect id` = c.`effect id`;
+
+create view `desk view` as 
+	select 
+		a.`desk id` `id`, 
+		a.`class` `class`, 
+		a.`build type` `name`, 
+		count(b.`match id`) `match times`, 
+		count(if(b.`winner desk id` = a.`desk id`, 1, NULL)) `win`,
+		count(if(b.`loser desk id` = a.`desk id`, 1, NULL)) `lose`, 
+		avg(b.`round`) `average round` 
+	from `desk` a left join `match` b on 
+		a.`desk id` = b.`winner desk id` 
+		or a.`desk id` = b.`loser desk id` 
+	group by a.`desk id`;
+
+create view `player desk view` as 
+    select a.`player id` `player id`, b.`desk id` `desk id`, b.`build type` `name` 
+	from `player desk` a join `desk` b 
+		on a.`desk id`=b.`desk id`;
