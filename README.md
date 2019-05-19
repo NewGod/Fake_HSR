@@ -2,6 +2,8 @@
 
 this is a midterm project in PKU Introduction to the database (Honor track). This project try to used sql to do something like what [hsreplay.net](hsreplay.net) do
 
+See my [Project Report](report/report.md)(Chinese) for more detail.
+
 ## usage
 
 ```shell
