@@ -6,11 +6,14 @@ this is a midterm project in PKU Introduction to the database (Honor track). Thi
 
 ```shell
 pip install -r requirement  # install requirement
-source env.sh  # setting the environment
+export FLASK_APP=app.py  # setting the environment
 flask --help  # see what command HSR have
 ```
 
-To run the project, you need to add a [mysql user config file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html) like this
+### For MacOS User
+Maybe you need to execute `export DYLD_LIBRARY_PATH=/usr/local/mysql-8.0.15-macos10.14-x86_64/lib/:$DYLD_LIBRARY_PATH` if you meet some error about pymysql.
+
+To run this project, you need to add a [mysql user config file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html) like this in the project dirctionary.
 
 ```
 [client]

@@ -91,4 +91,9 @@ def get_player_desk(idx: int):
     with DataBase() as db:
         desks = db.query('select `desk id` id, `name` name from `player desk view` where `player id`=%s order by `desk id`', args=[int(idx)])
     return jsonify(desks)
+
+
+@app.route("/report")
+def report():
+    return render_template('report.html')
 # vim: ts=4 sw=4 sts=4 expandtab

@@ -1,0 +1,498 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>北京大学 信息科学技术学院 数据库系统概念 课程设计报告</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export' >
+<div  id='write'  class = 'is-mac'><h4><a name='header-n0' class='md-header-anchor '></a>北京大学 信息科学技术学院 数据库系统概念 课程设计报告</h4><h1><a name='header-n2' class='md-header-anchor '></a>Fake HeathStone Replay</h1><h3><a name='header-n3' class='md-header-anchor '></a>参与同学：庄博尔   学号：1600012775</h3><p>摘要：本课程使用mysql以及flask设计了一个类似于<a href='hsreplay.net'>hsreplay.net</a>的网站，使用了sql语言完成了对炉石传说卡片，牌组，对战的一个管理，并尝试了sql的一些高级特性，如事务，视图，索引等。在实现这个项目的过程中学得了要如何设计，运行，管理一个数据库应用。</p><h2><a name='header-n5' class='md-header-anchor '></a>引言</h2><p>本项目的灵感来源于与同学交流课程设计内容时得出的，再结合最近<a href='https://playhearthstone.com/en-us/'>《炉石传说》</a>新冒险开启，便希望实现一个类似于hsreplay.net的卡牌数据分析网站，希望通过分析玩家，卡牌，牌组，对战来练习数据库的操作，提高自己对数据库的认识。</p><p>本课程设计实现了以下的几个功能：</p><ol start='' ><li>登记卡牌，牌组以及玩家的细节</li><li>对卡牌，牌组的细节的查看与筛选</li><li>对对战的一个登记网页</li></ol><p>本文分为五个部分，在第二部分中，我们介绍了本课程设计需要的背景知识、包括项目设计工具，实现水时使用的前端后端工具以及提高sql执行效率，正确性的一些方法；第三部分描述了课程设计的系统框架；第四部分给出相关的关系数据库模式和相应的操作；第五部分总结了全文，并且叙述了完成本课程设计的收获。</p><p>本课程设计代码可在<a href='https://github.com/NewGod/Fake_HSR' target='_blank' class='url'>https://github.com/NewGod/Fake_HSR</a>获得</p><h2><a name='header-n16' class='md-header-anchor '></a>相关工作</h2><p>本项目在设计部分使用了<a href='https://www.sap.com/products/powerdesigner-data-modeling-tools.html'>power designer</a>来生成ER图以及产生初步的sql语句。在实现部分，前端使用了python的一个网络微框架<a href='http://flask.pocoo.org/'>flask</a>，<a href='https://www.mysql.com/'>mysql</a>来作为后端的数据库，并使用了<a href='https://pymysql.readthedocs.io/en/latest/'>pymysql</a>来作为python与mysql通信的工具。在mysql的设计方面，我们应用了sql中的外键和事务管理来保证sql语句执行的正确性。在sql的执行效率方面，我们使用了视图以及索引来加速sql的查询和插入。同时为了防止sql的注入攻击，我们也用了pymysql内置的一些方法以及设计来避免攻击。</p><h2><a name='header-n18' class='md-header-anchor '></a>课程设计的系统框架</h2><p>《炉石传说》是一个卡牌游戏，两位玩家利用自己已有的卡牌，在九个职业中选择一个以及30张卡牌组成一套牌组来进行对战。我们希望分析玩家，牌组之间的对战情况，并提供对牌组，卡牌的快速查找。为了完成上述的功能，我们需要记录卡牌，牌组，对战记录以及用户的信息，并分析牌组与牌组，玩家与玩家之间的对战信息。</p><p>经过设计，其UML用例图如下：</p><p><img src='http://assets.processon.com/chart_image/5ce0ee2ae4b05071d485bcf2.png' alt='' referrerPolicy='no-referrer' /></p><p>其各个用例的简要介绍如下：</p><ul><li>查询卡牌：用户可以进行对卡牌的查询并提供一定的筛选功能。（如查询某职业，某种花费的卡牌）</li><li>查询卡组：用户可以通过查看卡组列表来确定哪种卡组拥有比较高的胜率，并查看某个卡组的具体细节。</li><li>记录对战信息：用户可以记录自己的对战信息。</li><li>查看用户信息：用户可以查看自己的个人对战信息，查看某次对战的对战细节。</li><li>登记信息：管理员可以在后台实时的添加卡牌，卡组，用户的信息。</li><li>数据库记录：数据库提供了相应的登记功能。</li><li>数据库查询：数据库提供相应的查询功能。</li></ul><p>在实现部分，处于方便，快捷的原因，我们决定使用python语言来作为其服务器语言，用一个网络微框架flask来提供服务，前端部分使用html以及一些简单的javascript来搭建网页。在后端部分，我们使用了Mysql来作为数据库，利用pymysql来作为与数据库通信的接口，这是因为其方便配置，同时在之前的课程中也已经使用过的原因。</p><p>在实际工作中，由于时间问题，我们并没有实现查看用户信息以及查看对战细节这两个部分的内容。这两个部分的查询比较简单而且实现方式与其他用例的实现方式较为相同故没有实现。</p><h2><a name='header-n40' class='md-header-anchor '></a>课程设计对应的关系数据库模型</h2><h3><a name='header-n41' class='md-header-anchor '></a>ER图</h3><p>为了设计出一个合理的关系数据库模型，我们先采用Powerdesigner来设计一个实体关系模型。在本设计中一共有五个实体：特效，卡牌，卡组，比赛，玩家。其中特效这个实体是因为一张卡牌拥有多种特效，因此将其抽离成为一个实体比较好，其他四个实体不需要做太多的说明。</p><p>这五个实体之间有下列的关系：卡牌拥有特效，卡组由卡牌组成，比赛有胜者败者及他们的卡组，玩家拥有属于自己的卡牌以及卡组，在进行了上述的探讨之后，我们可以得到下面的ER图：</p><p><img src='static/pic/1558276136364.jpg' alt='' referrerPolicy='no-referrer' /></p><h3><a name='header-n45' class='md-header-anchor '></a>关系数据库模式描述</h3><p>利用Power Designer提供的生成关系数据库，我们可以得到其关系数据库模型：</p><p><img src='static/pic/1558276069081.jpg' alt='' referrerPolicy='no-referrer' /></p><p>该关系数据库模型有9个表，其中大部分表使用一个自增的目录来作为其主键，不使用自增目录其他表的原因为要保持其外键的唯一性，故用其外键来作为相应的主键。这个模型的设计达到了第四范式的要求。</p><p>在视图设计上，我们创建了三个视图：卡组特效视图用来加快在做卡牌筛选时的速度；对战卡组视图用来加快对对战卡组的统计，快速得出卡组的对战信息；玩家卡组视图用来加快寻找对应玩家卡组的速度。同时也使用了几个索引加速对某些表格查询，排序的速度和效率。</p><h3><a name='header-n50' class='md-header-anchor '></a>关系数据库模式之上的操作</h3><p>下面我们将说明我们是如何利用这个关系数据库来实现在第三章提到的各种功能的。</p><ol><li>数据库初始化：我们利用<a href='https://click.palletsprojects.com/en/7.x/python3/'>click</a>库注册了一个新的命令，python读入初始化的sql文件并交给mysql执行。</li><li>登记信息：由于登记信息是由管理员进行的，因此我们用命令行来实现登记卡牌，卡组以及玩家信息。具体来说，我们利用click库注册了一个新的命令，管理员可以将卡牌，卡组以及玩家信息以json文件的形式保存下来。该程序自动读取json文件并进行信息的登记。每次新增信息时，将实体数据储存进数据库，然后在进行询问获得其关系索引，将关系存储进数据库。</li><li>查询卡牌：查询卡牌由一个网页进行，网页读取用户所要筛选的卡牌信息并将后端的数据展示出来。对于后端，我们在收到网页传递过来的信息后，构建出查询需要的sql语句并交给mysql进行查询。由于查询中包括对特效信息的查询，应此我们创建一个卡牌特效视图来加速查询速度。</li><li>查询卡组：查询卡组同样在一个网页上进行，网页实时展示每个卡组参与的相关信息以及其参加的比赛数量以及胜率，如果对某个卡组感兴趣，可以点击查看该卡组的细节。为了完成这些操作，后端需要将卡组信息以及比赛信息结合起来，处于加速这个过程的考虑，我们将这个网页需要的信息用一个视图存储起来。</li><li>记录对战信息：记录对战信息需要玩家填入胜者，败者及他们的卡组。为了避免出现玩家使用不存在的卡组，我们在选择玩家后再进行查询获得其拥有的卡组，这一步也可以使用视图来进行加速。</li></ol><p>同时，为了保证每个功能的原子性，我们使用了SQL中的事务特性，对mysql的插入和查询进行了封装，保证每一个操作不会因为出现错误而半途中断。我们还仔细的研究了各种细节，利用pymysql中自带的字符串转换函数以及各种类型检查，防止sql注入攻击。</p><h2><a name='header-n62' class='md-header-anchor '></a>总结</h2><p>这次的数据库概论期中课程设计，我们利用flask和mysql实现了一个对《炉石传说》卡牌，牌组，对战，玩家的管理和统计网站，利用ER图和相关工具来对数据库进行设计和管理，并尝试了许多数据库的高级特性，查询了相关资料防止sql的注入攻击。</p><p>通过执行这次期中课程设计，我在这之中学会了很多。学会了如何更好的使用PowerDesigner以及另外的一个ER图绘制工具<a href='https://erdplus.com/'>ERDPlus</a>，虽然在上一次作业中已经尝试使用过了，但是更加深入的使用这个软件会对ER图有更深刻的理解。同时，由于这次不只是设计一个数据库同时还要实现它，在实现的时候会遇到很多的问题，例如很多关系可能不是唯一的，不能直接把外键作为主键，这导致在实现的过程中需要回去修改原来的设计。</p><p>同时我也了解到了利用python开发一个数据库应用的一些更好的方法。由于老师的要求，这次的课程设计一定要使用sql语言来进行，但在查找资料的过程中我也了解到了许多非传统型数据库，比如<a href='https://www.mongodb.com/'>MongoDB</a>，同时对于传统型数据库也有很多数据库框架能够更好的面向对象编程，如<a href='http://www.sqlalchemy.org/'>sqlalchemy</a>，这些框架虽然不像直接使用mysql语言那样快速，灵活。但由于其面向对象的特性使得能够更快的进行开发。今后遇到相似的问题时我很愿意去使用这些新工具。</p><p>同时在数据库之外，这次课程设计也让我尝试了许多的新工具，第一次使用flask来做网络框架，第一次使用pymysql来控制数据库，第一次使用<a href='https://github.com/bndr/pipreqs'>pipreqs</a>来生成相关的库依赖文件。这对我的编程水平也是一次提高。</p><h2><a name='header-n83' class='md-header-anchor '></a>reference</h2><ol><li>炉石传说官方网站 <a href='https://playhearthstone.com/en-us/' target='_blank' class='url'>https://playhearthstone.com/en-us/</a></li><li>HSReplay.net <a href='https://hsreplay.net/' target='_blank' class='url'>https://hsreplay.net/</a></li><li>SAP PowerDesigner <a href='https://www.sap.com/products/powerdesigner-data-modeling-tools.html' target='_blank' class='url'>https://www.sap.com/products/powerdesigner-data-modeling-tools.html</a></li><li>Flask <a href='http://flask.pocoo.org/'>http://flask.pocoo.org/</a></li><li>Mysql <a href='https://www.mysql.com/' target='_blank' class='url'>https://www.mysql.com/</a></li><li>Pymysql <a href='https://pymysql.readthedocs.io/en/latest/' target='_blank' class='url'>https://pymysql.readthedocs.io/en/latest/</a></li><li>Click <a href='https://click.palletsprojects.com/en/7.x/python3/' target='_blank' class='url'>https://click.palletsprojects.com/en/7.x/python3/</a></li></ol></div>
+</body>
+</html>
